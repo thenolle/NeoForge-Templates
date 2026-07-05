@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: net.neoforged.fancymodloader:earlydisplay:4.0.37" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="net.neoforged.fancymodloader" artifactId="earlydisplay" version="4.0.37" baseVersion="4.0.37" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.neoforged.fancymodloader/earlydisplay/4.0.37/6f8837509283846bcb1ca93e5592927e492ced8f/earlydisplay-4.0.37.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.neoforged.fancymodloader/earlydisplay/4.0.37/a4f4b2c5b706bda686ee8110f5dfa9b7a8dc37a7/earlydisplay-4.0.37-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

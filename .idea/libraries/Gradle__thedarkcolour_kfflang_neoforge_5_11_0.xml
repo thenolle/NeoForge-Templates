@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: thedarkcolour:kfflang-neoforge:5.11.0" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="thedarkcolour" artifactId="kfflang-neoforge" version="5.11.0" baseVersion="5.11.0" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/thedarkcolour/kfflang-neoforge/5.11.0/b21b25f081b93207a575d04fcac5f9d413eab8ac/kfflang-neoforge-5.11.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/thedarkcolour/kfflang-neoforge/5.11.0/50eb9c3c1d879e349a44ec9ea57b27aa34e6c5f0/kfflang-neoforge-5.11.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
