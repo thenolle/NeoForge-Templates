@@ -1,0 +1,41 @@
+# Gradle
+.gradle/
+build/
+*.gradle
+*.gradle.kts
+
+# Kotlin
+.kotlin/
+.kotlin-sbt/
+kotlin-daemon.log
+*.kotlin_module
+
+# NeoForge / ModDevGradle Minecraft runtime
+.neoform/
+caches/neoformruntime/
+*.json.xz
+saves/
+crash-reports/
+logs/
+option.txt
+options.txt
+
+# Minecraft user data
+.minecraft/
+servers.dat
+config/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+target/
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
