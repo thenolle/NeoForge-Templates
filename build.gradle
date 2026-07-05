@@ -1,0 +1,115 @@
+plugins {
+    id "net.neoforged.moddev" version "2.0.72"
+    id "org.jetbrains.kotlin.jvm" version "${kotlin_version}"
+    id "idea"
+}
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = mod_id
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+kotlin {
+    jvmToolchain(21)
+    compilerOptions {
+        freeCompilerArgs.add("-Xjvm-default=all")
+    }
+}
+
+tasks.named("compileKotlin") {
+    destinationDirectory = tasks.named("compileJava", JavaCompile).get().destinationDirectory
+}
+
+neoForge {
+    version = neo_version
+
+    parchment {
+        mappingsVersion = project.findProperty("neogradle.subsystems.parchment.mappingsVersion")
+        minecraftVersion = project.findProperty("neogradle.subsystems.parchment.minecraftVersion")
+    }
+
+    runs {
+        client {
+            client()
+            systemProperty "forge.logging.markers", "REGISTRIES"
+        }
+        server {
+            server()
+            programArgument "--nogui"
+            systemProperty "forge.logging.markers", "REGISTRIES"
+        }
+        data {
+            data()
+            programArguments.addAll "--mod", mod_id, "--all", "--output", file("src/generated/resources/").absolutePath, "--existing", file("src/main/resources/").absolutePath
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+}
+
+sourceSets.main.resources {
+    srcDir "src/generated/resources"
+    srcDir "src/main/templates"
+}
+
+repositories {
+    mavenCentral()
+    maven { url = "https://thedarkcolour.github.io/KotlinForForge/" }
+}
+
+dependencies {
+    implementation "thedarkcolour:kotlinforforge-neoforge:${kotlinforforge_version}"
+
+    jarJar("org.xerial:sqlite-jdbc:3.53.2.0") {
+        version {
+            strictly "[3.53,)"
+            prefer "3.53.2.0"
+        }
+    }
+
+    compileOnly "org.xerial:sqlite-jdbc:3.53.2.0"
+    additionalRuntimeClasspath "org.xerial:sqlite-jdbc:3.53.2.0"
+}
+
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+            minecraft_version : minecraft_version,
+            minecraft_version_range : minecraft_version_range,
+            neo_version : neo_version,
+            neo_version_range : neo_version_range,
+            loader_version_range : loader_version_range,
+            mod_id : mod_id,
+            mod_name : mod_name,
+            mod_license : mod_license,
+            mod_version : mod_version,
+            mod_authors : mod_authors,
+            mod_description : mod_description
+    ]
+    inputs.properties replaceProperties
+    filesMatching(["META-INF/neoforge.mods.toml"]) {
+        expand replaceProperties
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+}
+
+tasks.jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}
