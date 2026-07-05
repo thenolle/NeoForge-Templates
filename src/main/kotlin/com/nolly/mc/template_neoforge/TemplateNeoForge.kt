@@ -24,26 +24,17 @@ object TemplateNeoForge {
 	init {
 		LOGGER.info("Initializing $ID")
 		MOD_BUS.addListener(::onCommonSetup)
-		runWhenOn(Dist.CLIENT) {
-			MOD_BUS.addListener(::onClientSetup)
-		}
-		runWhenOn(Dist.DEDICATED_SERVER) {
-			MOD_BUS.addListener(::onServerSetup)
-		}
+		MOD_BUS.addListener(::onClientSetup)
 	}
 
 	private fun onCommonSetup(event: FMLCommonSetupEvent) {
+		LOGGER.info("Common setup complete")
+	}
+
+	private fun onClientSetup(event: FMLClientSetupEvent) {
 		val databasePath = FMLPaths.CONFIGDIR.get().resolve("$ID/data.db")
 		database = Database(databasePath)
 		playerStats = PlayerStatsRepository(database).also { it.createTable() }
 		LOGGER.info("SQLite database ready at $databasePath")
-	}
-
-	private fun onClientSetup(event: FMLClientSetupEvent) {
-		LOGGER.info("Client setup complete")
-	}
-
-	private fun onServerSetup(event: FMLDedicatedServerSetupEvent) {
-		LOGGER.info("Dedicated server setup complete")
 	}
 }
