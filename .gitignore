@@ -1,8 +1,6 @@
 # Gradle
 .gradle/
 build/
-*.gradle
-*.gradle.kts
 
 # Kotlin
 .kotlin/
@@ -12,24 +10,14 @@ kotlin-daemon.log
 
 # NeoForge / ModDevGradle Minecraft runtime
 .neoform/
-caches/neoformruntime/
+caches/
 *.json.xz
-saves/
-crash-reports/
-logs/
-option.txt
-options.txt
+run/
 
 # Minecraft user data
 .minecraft/
-servers.dat
-config/
 
 # IntelliJ IDEA
-.idea/
-*.iml
-*.ipr
-*.iws
 out/
 target/
 
